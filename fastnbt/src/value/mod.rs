@@ -159,6 +159,48 @@ impl Value {
             _ => None,
         }
     }
+
+    pub fn as_byte_array(&self) -> Option<&ByteArray> {
+        match self {
+            Value::ByteArray(v) => Some(v),
+            _ => None,
+        }
+    }
+
+    pub fn as_int_array(&self) -> Option<&IntArray> {
+        match self {
+            Value::IntArray(v) => Some(v),
+            _ => None,
+        }
+    }
+
+    pub fn as_long_array(&self) -> Option<&LongArray> {
+        match self {
+            Value::LongArray(v) => Some(v),
+            _ => None,
+        }
+    }
+
+    pub fn as_list(&self) -> Option<&Vec<Value>> {
+        match self {
+            Value::List(v) => Some(v),
+            _ => None,
+        }
+    }
+
+    pub fn as_compound(&self) -> Option<&HashMap<String, Value>> {
+        match self {
+            Value::Compound(v) => Some(v),
+            _ => None,
+        }
+    }
+
+    pub fn get(&self, key: &str) -> Option<&Value> {
+        match self {
+            Value::Compound(map) => map.get(key),
+            _ => None,
+        }
+    }
 }
 
 // ------------- From<T> impls -------------
